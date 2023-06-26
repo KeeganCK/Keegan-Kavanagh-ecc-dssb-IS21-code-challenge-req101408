@@ -30,75 +30,6 @@ const getProducts = async (req, res, next) => {
   });
 };
 
-// Get products for a certain scrum master
-const getscrumMasterProducts = async (req, res, next) => {
-  let name = req.params.name;
-  console.log(name);
-  if (!name) {
-    const error = new HttpError("Need to enter a name", 400);
-    return next(error);
-  }
-  let data = [];
-
-  // Get data from json file and check name given to all scrum master names, if equal add to list to send back
-  try {
-    const readData = await fs.readFileSync("./projects.json", "utf8");
-    obj = JSON.parse(readData);
-    for (let i = 0; i < obj.projectsArray.length; i++) {
-      name = name.toLowerCase();
-      scrumMaster = obj.projectsArray[i].scrumMasterName.toLowerCase();
-      if (name === scrumMaster) {
-        data.push(obj.projectsArray[i]);
-      }
-    }
-  } catch (err) {
-    const error = new HttpError("Can not get products, please try again", 500);
-    return next(error);
-  }
-
-  res.status(200).json({
-    // Reverse to get newest at the top (bottom of projects.json) same for all products arrays sent back
-    data: data.reverse(),
-  });
-};
-
-// Get products for a certain developer
-const getdeveloperProducts = async (req, res, next) => {
-  let name = req.params.name;
-  if (!name) {
-    const error = new HttpError("Need to enter a name", 400);
-    return next(error);
-  }
-
-  let data = [];
-  try {
-    const readData = await fs.readFileSync("./projects.json", "utf8");
-    obj = JSON.parse(readData);
-    //Check all entries in projects json and then check all developers to see if it matches provided name
-    for (let i = 0; i < obj.projectsArray.length; i++) {
-      let inDevArray = false;
-      for (let j = 0; j < obj.projectsArray[i].Developers.length; j++) {
-        if (
-          name.toLowerCase() ===
-          obj.projectsArray[i].Developers[j].toLowerCase()
-        ) {
-          inDevArray = true;
-        }
-      }
-      if (inDevArray) {
-        data.push(obj.projectsArray[i]);
-      }
-    }
-  } catch (err) {
-    const error = new HttpError("Can not get products, please try again", 500);
-    return next(error);
-  }
-
-  res.status(200).json({
-    data: data.reverse(),
-  });
-};
-
 //Add a product
 const addProduct = async (req, res, next) => {
   // If body is empty, throw an error
@@ -263,5 +194,3 @@ exports.healthEndpoint = healthEndpoint;
 exports.getProducts = getProducts;
 exports.addProduct = addProduct;
 exports.editProduct = editProduct;
-exports.getscrumMasterProducts = getscrumMasterProducts;
-exports.getdeveloperProducts = getdeveloperProducts;
