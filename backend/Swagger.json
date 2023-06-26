@@ -1,0 +1,330 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "ECC API to help manage products",
+    "version": "1.0.0",
+    "title": "ECC Product API"
+  },
+  "schemes": ["http"],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+		"/healthEndpoint": {
+			"get": {
+        "summary": "Checks health of server",
+				"responses": {
+					"200": {
+						"description": "checks if server is healthy or not and returns 200 code",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+    "/getProducts": {
+      "get": {
+        "summary": "Gets all products",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successfully received all products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/product"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Could not retrieve products, server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getscrumMasterProducts/{name}": {
+      "get": {
+        "summary": "Gets products for certain scrum master",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of person you're looking for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully received all products for a certain Scrum Master",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/product"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Client didn't input anything, needs to input a name",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Could not retrieve products, server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getdeveloperProducts/{name}": {
+      "get": {
+        "summary": "Gets products for certain developer",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of person you're looking for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully received all products for a certain Developer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/product"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Client didn't input anything, needs to input a name",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Could not retrieve products, server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addProduct": {
+      "post": {
+        "summary": "Adds a product to the projects.json file",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Must have all fields filled out for a product",
+            "required": true,
+            "schema": { "$ref": "#/definitions/product" }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Adding a product was succesful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "record": {
+                  "type": "object",
+                  "$ref": "#/definitions/product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The product being added does not match the Schema provided",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Could not create product, server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/editProduct": {
+      "post": {
+        "summary": "Edits a product by changing and saving its values",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Must have all fields filled out to edit the product, can't change things to be blank",
+            "required": true,
+            "schema": { "$ref": "#/definitions/editProduct" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Adding a product was succesful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+					"400": {
+						"description": "The product being added does not match the Schema provided",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+					},
+					"500": {
+            "description": "Could not edit and save the product, server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "product": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productOwnerName": {
+          "type": "string"
+        },
+        "Developers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "scrumMasterName": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string"
+        }
+      }
+    },
+    "editProduct": {
+      "type": "object",
+      "properties": {
+        "productName": {
+          "type": "string"
+        },
+        "productOwnerName": {
+          "type": "string"
+        },
+        "Developers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "scrumMasterName": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
