@@ -2,7 +2,7 @@
 
 ## Cloning the Repository
 
-* In your terminal run ```git clone https://github.com/KeeganCK/Keegan-Kavanagh-IS24-full-stack-competition-req97073.git```
+* In your terminal run ```git clone https://github.com/KeeganCK/Keegan-Kavanagh-ecc-dssb-IS21-code-challenge-req101408.git```
 * ```cd``` into the newly created folder
 
 ## Getting the App Started
