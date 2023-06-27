@@ -22,7 +22,7 @@
 ### How to Start Frontend Without Docker
 
 * The frontend should always be started second so React can ask you to start the app on a different port from 3000, which the backend will be using. 
-* First, change into the frontend directory using ```cd frontend```, then run ```npm install```. 
+* First, open up another terminal. Once in the projects main directory, change into the frontend directory using ```cd frontend```, then run ```npm install```. 
 * Lastly, run ```npm start``` to start up the app. When it prompts you to pick a different port besides 3000, say yes and it should start on port 3001 (http://localhost:3001).
 
 ## Swagger
