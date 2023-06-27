@@ -24,4 +24,5 @@ app.get("/", (req, res) => {
   res.send("ECC API, visit http://localhost:3000/api/api-docs to learn more");
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000)
+console.log("Server started on port 3000");
