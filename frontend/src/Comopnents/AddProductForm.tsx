@@ -166,7 +166,7 @@ const AddProductForm = (props: {
         labelCol={{ span: 6 }}
         label="Location"
         name="location"
-        rules={[{ required: true, message: "Please enter a location" }]}
+        rules={[{ required: true, message: "Please enter a Location" }]}
       >
         <Input />
       </Form.Item>

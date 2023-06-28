@@ -16,7 +16,7 @@
 ### How to Start the Backend Without Docker
 
 * The backend should be started first to ensure it gets port 3000. 
-* Change into the backend directory using ```cd backend``` then run ```npm install``` to install all dependencies. 
+* Change into the backend directory using ```cd backend```, then run ```npm install``` to install all dependencies. 
 * Lastly, run ```node index.js``` to start the server on port 3000 (http://localhost:3000).
 
 ### How to Start Frontend Without Docker
