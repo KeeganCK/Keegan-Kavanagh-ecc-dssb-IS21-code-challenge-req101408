@@ -56,7 +56,6 @@ const Toolbar = () => {
       if (!response.ok) {
         throw new Error(responseData.message);
       }
-      console.log(responseData.message);
       setHealthy(true);
     } catch (err) {
       setHealthy(false);

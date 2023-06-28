@@ -17,7 +17,7 @@ const healthEndpoint = async (req, res, next) => {
 const getProducts = async (req, res, next) => {
   let data = [];
   try {
-    const readData = await fs.readFileSync("./projects.json", "utf8");
+    const readData = fs.readFileSync("./projects.json", "utf8");
     obj = JSON.parse(readData);
     data = obj.projectsArray;
   } catch (err) {
@@ -122,7 +122,6 @@ const editProduct = async (req, res, next) => {
     methodology,
     location
   } = req.body;
-  console.log(req.body);
 
   if(!productName || !productOwnerName || !scrumMasterName || !methodology || !location) {
     const error = new HttpError(
