@@ -12,7 +12,7 @@ const CardTableDiv = styled.div`
   justify-items: center;
   align-items: center;
 	grid-gap: 20px;
-  @media (max-width: 700px) {
+  @media (max-width: 780px) {
     display: flex;
     flex-direction: column;
     width: 100%;
