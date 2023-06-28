@@ -89,7 +89,7 @@
             }
           },
           "400": {
-            "description": "The product being added does not match the Schema provided",
+            "description": "The product being added does not match the Schema provided or not all fields were filled out",
             "schema": {
               "type": "object",
               "properties": {
@@ -138,7 +138,7 @@
             }
           },
 					"400": {
-						"description": "The product being added does not match the Schema provided",
+						"description": "The product being added does not match the Schema provided or not all fields were filled out",
             "schema": {
               "type": "object",
               "properties": {

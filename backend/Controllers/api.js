@@ -124,6 +124,14 @@ const editProduct = async (req, res, next) => {
   } = req.body;
   console.log(req.body);
 
+  if(!productName || !productOwnerName || !scrumMasterName || !methodology || !location) {
+    const error = new HttpError(
+      "Need fill out all required inputs, please try again",
+      400
+    );
+    return next(error);
+  }
+
   // Checks to ensure at least on developer is there
   if (Developers.length === 0) {
     const error = new HttpError(
