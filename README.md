@@ -1,7 +1,7 @@
 # Keegan-Kavanagh-ecc-dssb-IS21-code-challenge-req101408
 
 ## Introduction
-This repository is for the BC government code challenge "ecc-dssb-IS21-code-challenge-req101408". The backend has been done in Node and Express and the frontend has been done in React with TypeScript.
+This repository is for the BC government code challenge "ecc-dssb-IS21-code-challenge-req101408". The backend has been done in Node with Express and the frontend has been done in React with TypeScript.
 
 ## Cloning the Repository
 
