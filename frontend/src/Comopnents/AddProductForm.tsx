@@ -7,7 +7,6 @@ const AddProductForm = (props: {
   showNotification: (message: string) => void,
 	setRecord: React.Dispatch<React.SetStateAction<Project | undefined>>,
   changeCSS: () => void;
-	removeSearch: () => void;
 }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification();
@@ -48,7 +47,6 @@ const AddProductForm = (props: {
       }
       setLoading(false)
       props.closeModal();
-			props.removeSearch() 
       form.resetFields();
       props.showNotification(responseData.message);
 			props.setRecord(responseData.record);

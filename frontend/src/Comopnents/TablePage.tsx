@@ -6,7 +6,6 @@ import { Typography } from "antd";
 import AddProductForm from "./AddProductForm";
 import EditProductForm from "./EditProductForm";
 import "./Table.css";
-import SearchBar from "./SearchBar";
 import MobileTable from "./MobileTable";
 
 const { Text } = Typography;
@@ -14,12 +13,6 @@ const { Text } = Typography;
 const TableContainerDiv = styled.div`
   width: 80%;
   margin: auto;
-`;
-
-const SearchContainerDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
 `;
 
 const BottomContainerDiv = styled.div`
@@ -48,26 +41,17 @@ const TablePage = () => {
   const [record, setRecord] = useState<Project>();
   const [refresh, setRefresh] = useState<boolean>(false);
   const [cssClass, setCssClass] = useState<string>("");
-  const [searchValue, setSearchValue] = useState<string>("");
-  // scrumMaster or developer
-  const [searchKey, setSearchKey] = useState<string>("scrumMaster");
   //If the window is small, set small window to true
   const [smallWindow, setSmallWindow] = useState<boolean>(false);
 
   const [api, contextHolder] = notification.useNotification();
 
-  // This async function retrieves all products or can retreive specific products if the search is used
+  // This async function retrieves all products
   const getProjects = async () => {
     try {
       setLoading(true);
       let response: any;
-      if (searchValue) {
-        response = await fetch(
-          `http://localhost:3000/api/get${searchKey}Products/${searchValue}`
-        );
-      } else {
-        response = await fetch("http://localhost:3000/api/getProducts");
-      }
+      response = await fetch("http://localhost:3000/api/getProducts");
       const responseData = await response.json();
       //If reponse not good, throw an error
       if (!response.ok) {
@@ -229,11 +213,6 @@ const TablePage = () => {
     setCssClass("table-row-unbordered");
   };
 
-  // Resets the search value
-  const removeSearch = () => {
-    setSearchValue("");
-  };
-
   return (
     <TableContainerDiv>
       {contextHolder}
@@ -285,7 +264,6 @@ const TablePage = () => {
           showNotification={showNotification}
           setRecord={setRecord}
           changeCSS={changeCSS}
-          removeSearch={removeSearch}
         />
       </Modal>
       <Modal
